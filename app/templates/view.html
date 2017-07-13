@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{data.title}}</title>
+    <link href="{{data.favicon}}" type="image/x-icon" rel="shortcut icon">
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../static/metismenu/metis-menu.min.css" rel="stylesheet">
+    <link href="../static/datatable/datatable.css" rel="stylesheet">
+    <link href="../static/alert/sweet-alert.css" rel="stylesheet">
+
+    <link href="../static/sb-admin-2.css" rel="stylesheet">
+    <link href="../static/animate.css" rel="stylesheet">
+    <link href="../static/select/select2.min.css" rel="stylesheet">
+    <link href="../static/datepicker/bootstrap-datepicker3.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/easyui/css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../static/easyui/css/icon.css">
+   
+   
+    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<link href="../static/images/favicon.ico" type="image/x-icon" rel="shortcut icon">
+	<style type="text/css">
+		.navbar-header{
+			width: 200px;
+			text-align: center;
+			/*padding-left: 20px;*/
+		}
+		.navbar-brand{
+			font-size: 20px;
+
+		}
+        .table{
+            margin-top: 10px;
+        }
+
+.hover{
+    cursor: pointer;
+}
+.progress-reboot{
+    position: absolute;
+    height: 2px;
+    top:0px;
+    background: #337ab7;
+    width: 0%;
+    z-index: 2000;
+}
+#main-content{
+    overflow-x:auto;
+}
+#main-content .add-btn{
+    position: absolute;
+    z-index:100;
+    width: 200px;
+}
+#wrapper{
+    background: #2e3c4e;
+}
+.navbar-default .navbar-nav>li>a{
+    color:white;
+}
+.navbar-default .navbar-nav>li>a:hover{
+    background: #299d71;
+}
+
+.navbar-default .navbar-brand{
+    color:white;
+}
+
+.navbar-default .navbar-brand:hover{
+    color:white;
+}
+.select2-container{
+    width: 100% !important;
+}
+button.detail{
+    margin-left: 10px;
+}
+.sweet-alert h2{
+    margin-top: 30px;
+}
+
+	</style>
+
+
+</head>
+
+<body>
+
+<div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">{{data.brand_name}}</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li><a href="/index" target="_blank">首页</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{username}} <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li>
+                        <a href="/logout">退出</a>
+                    </li>  
+                  </ul>
+                </li>
+   
+            </ul>
+            <form class="navbar-form">
+                <!-- <input type="text" class="form-control" placeholder="Search..."> -->
+            </form>
+
+            <div class="navbar-default sidebar" style="margin-top:42px" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        {% for menu in data.menu %}
+                            {% if menu.sub %}
+                                <li>                                   
+                                    <a href="#">{{menu.title}}<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                    {% for s in menu.sub%}
+                                        <li>
+                                            <a href="/page/{{s.name}}">{{s.title}}</a>
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="/page/{{menu.name}}">{{menu.title}}</a>
+                                </li>
+                            {% endif %}
+                            
+                        {% endfor %}
+
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+ <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+</div>
+          
+    <script src="../static/jquery/jquery.min.js"></script>
+    <!-- 
+    	<script src="../static/echarts/echarts-all.js"></script> 
+    -->
+    <script src="../static/echarts/echarts.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../static/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../static/datatable/datatable.js"></script>
+    <script src="../static/metismenu/metis-menu.min.js"></script>
+    <script src="../static/underscore.js"></script>
+    <script src="../static/validate/validate.js"></script>
+    <script src="../static/validate/bootstrap.js"></script>
+    <script src="../static/datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="../static/alert/sweet-alert.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../static/sb-admin-2.js"></script>
+	<script src="../static/easyui/js/jquery.easyui.min.js"></script>
+   	<script src="../static/easyui/js/easyui-lang-zh_CN.js"></script>
+    {% block js %}
+    {% endblock %}
+
+
+</body>
+
+</html>
